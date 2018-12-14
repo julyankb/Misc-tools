@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 * Specify if file has header below.
 '''
 
-filepath = '/home/julyankb/Workspace/Osteotoxic-drugs/OR_hip_ondrugs.txt'
+filepath = ''
 
 # If input file has header, set True. Else, set false.
 header = True
@@ -19,7 +19,7 @@ delimiter = '\t'
 # Plot title
 title = ''
 
-xlabel = 'OR of hip fracture in FRD users'
+xlabel = ''
 
 # Set to False if want no ylabels
 y_labels = True
@@ -37,7 +37,7 @@ fontsize = 14
 # Shape mappings can be found at https://matplotlib.org/api/markers_api.html
 # Example: 'D' --> Diamond
 custom_shapes = {
-    'all': ('D', 100)
+    'label': ('D', 100)
 }
 # =================================================================================================
 class Point:
