@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 # ========================================== USER INPUT ===========================================
 '''
 * Input file must be of the following format: label, estimate, conf_lower, conf_upper, pvalue
-* The delimiter can be defined below. 
-* Specify if file has header below.
+* The delimiter must be defined below. 
+* Must specify if file has header below.
 '''
 
 filepath = ''
@@ -19,12 +19,13 @@ delimiter = '\t'
 # Plot title
 title = ''
 
+# Label on x-axis
 xlabel = ''
 
-# Set to False if want no ylabels
+# Set to False if want no labels on y-axis
 y_labels = True
 
-# Set to True if want pvalues
+# Set to True if want pvalues included in y-axis labels
 show_pvalues = False
 
 # Vertical line at 0 for BETA, at 1 for OR
@@ -48,6 +49,7 @@ class Point:
         self.CIU = CIU
         self.pvalue = pvalue
 
+# Generate list of Point objects from input file
 point_list = []
 with open(filepath, 'r') as infile:
     if header:
@@ -57,11 +59,11 @@ with open(filepath, 'r') as infile:
         label, estimate, CIL, CIU, pvalue = [line[0]] + [float(i) for i in line[1:]]
         point_list.append(Point(label, estimate, CIL, CIU, pvalue))
 
+# Reverse list to plot in order input file
 point_list = list(reversed(point_list))
 
+# Plot point estimates
 for i, point in enumerate(point_list, start=0):
-    
-    # Plot point estimates
     if point.label in custom_shapes:
         plt.scatter(point.estimate, i,
                     marker = custom_shapes[point.label][0],
@@ -83,8 +85,8 @@ plt.axhline(0.5, ls ='--', color='k',linewidth=0.5)
 if y_labels:
     if show_pvalues:
         plt.yticks([y for y in range(len(point_list)+0)],
-                   ['%s (p = %s)'%(point.label, point.pvalue) for point in point_list],
-                   fontsize=fontsize)
+           ['%s (p = %s)'%(point.label, point.pvalue) for point in point_list],
+           fontsize=fontsize)
     else:
         plt.yticks([y for y in range(len(point_list)+0)],
            ['%s'%(point.label) for point in point_list],
