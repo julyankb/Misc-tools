@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt 
 
-# ========================================== USER INPUT ===========================================
+# =========== USER INPUT ===========
 '''
 * Input file must be of the following format: label, estimate, conf_lower, conf_upper, pvalue
 * The delimiter must be defined below. 
@@ -40,7 +40,9 @@ fontsize = 14
 custom_shapes = {
     'label': ('D', 100)
 }
-# =================================================================================================
+
+# ==================================
+
 class Point:
     def __init__(self, label, estimate, CIL, CIU, pvalue):
         self.label = label
