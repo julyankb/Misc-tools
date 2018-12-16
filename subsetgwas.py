@@ -1,5 +1,10 @@
 import gzip
 # =============== USER INPUT ===============
+'''
+Extract a set of lines in GWAS SumStats file according to a
+user-provided rsid_list. Specify rsid_list manually below.
+'''
+
 # SNPs to be extracted from input file
 rsid_list = ['rs123456789',
 	'rs123456788',
