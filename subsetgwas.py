@@ -26,20 +26,19 @@ for snp in rsid_list:
         snp_dict[snp] = None
 
 if filepath.split('.')[-1] == 'gz':
-        with gzip.open(filepath, 'r') as infile:
-		# Print header                
-		print(next(infile).rstrip())
-                for line in infile:
-                        # No need to waste time splitting beyond column of interest
-			# I do .rstrip() in case rsid is in last column                        
-			data = line.rstrip().split(delimiter, rsid_col+1)
-                        if data[rsid_col] in snp_dict:
-                                print(line.rstrip())
+    with gzip.open(filepath, 'r') as infile:
+        # Print header
+        print(next(infile).rstrip())
+        for line in infile:
+            # No need to waste time splitting beyond column of interest
+	    # Do .rstrip() in case rsid is last column
+	    data = line.rstrip().split(delimiter, rsid_col+1)
+            if data[rsid_col] in snp_dict:
+                print(line.rstrip())
 else:
-        with open(filepath, 'r') as infile:
-                print(next(infile).rstrip())
-                for line in infile:
-                        data = line.rstrip().split(delimiter, rsid_col+1)
-                        if data[rsid_col] in snp_dict:
-                                print(line.rstrip())
-
+    with open(filepath, 'r') as infile:
+        print(next(infile).rstrip())
+        for line in infile:
+            data = line.rstrip().split(delimiter, rsid_col+1)
+            if data[rsid_col] in snp_dict:
+                print(line.rstrip())
